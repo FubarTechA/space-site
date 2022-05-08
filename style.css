@@ -270,7 +270,9 @@ nav {
 .crew-div {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin: 49px auto;
+  height: 80vh;
 }
 
 .crew-div h4 {
@@ -284,6 +286,20 @@ nav {
 
 .crew-div p {
   width: 60%;
+}
+
+.crew-image {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.crew-image img {
+  width: 100%;
+  height: inherit;
+  position: absolute;
 }
 
 .crew-slide-dot {

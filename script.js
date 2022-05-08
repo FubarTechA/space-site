@@ -2,6 +2,8 @@
 
 const navBar = document.querySelector(".nav");
 const navLinks = document.querySelectorAll(".nav-links a");
+const slides = document.querySelectorAll(".slides");
+const dotContainer = document.querySelector(".crew-slide-dot");
 // const explore = document.querySelector(".explore");
 // const exploreBtn = explore.querySelector(".explore-btn");
 // console.log(planets[0].dataset);
@@ -127,4 +129,26 @@ const destinationFunction = function () {
   });
 };
 
-destinationFunction();
+// destinationFunction();
+
+dotContainer.addEventListener("mouseover", function (e) {
+  const dot = e.target.closest(".dot");
+  if (!dot) return;
+  dot.classList.add("hover");
+});
+
+dotContainer.addEventListener("mouseout", function (e) {
+  const dot = e.target.closest(".dot");
+  if (!dot) return;
+  dot.classList.remove("hover");
+});
+
+slides.forEach(function (_, i) {
+  dotContainer.insertAdjacentHTML("beforeend", '<div class="dot"></div>');
+});
+
+const goToSlide = function (slide) {
+  slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+};
+
+goToSlide();
