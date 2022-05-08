@@ -2,8 +2,11 @@
 
 const navBar = document.querySelector(".nav");
 const navLinks = document.querySelectorAll(".nav-links a");
-const slides = document.querySelectorAll(".slides");
 const dotContainer = document.querySelector(".crew-slide-dot");
+const CrewImageContainer = document.querySelector(".crew-image");
+const crewRole = document.querySelector(".crew-role");
+const crewBio = document.querySelector(".crew-bio");
+const crewName = document.querySelector(".crew-name");
 // const explore = document.querySelector(".explore");
 // const exploreBtn = explore.querySelector(".explore-btn");
 // console.log(planets[0].dataset);
@@ -131,6 +134,17 @@ const destinationFunction = function () {
 
 // destinationFunction();
 
+dotContainer.addEventListener("click", function (e) {
+  const dot = e.target.closest(".dot");
+  if (!dot) return;
+  dot.classList.add("active");
+  const siblings = dot.closest(".crew-slide-dot").querySelectorAll(".dot");
+  if (!siblings) return;
+  siblings.forEach((sib) => {
+    if (sib !== dot) sib.classList.remove("active");
+  });
+});
+
 dotContainer.addEventListener("mouseover", function (e) {
   const dot = e.target.closest(".dot");
   if (!dot) return;
@@ -143,12 +157,57 @@ dotContainer.addEventListener("mouseout", function (e) {
   dot.classList.remove("hover");
 });
 
-slides.forEach(function (_, i) {
-  dotContainer.insertAdjacentHTML("beforeend", '<div class="dot"></div>');
-});
-
-const goToSlide = function (slide) {
-  slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+const goToSlide = function (slides, slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
 };
 
-goToSlide();
+const crewFunc = async function () {
+  const data = await getData();
+  let images = data.crew.map((crew) => crew.images.png);
+  console.log(data.crew);
+  images.forEach((img, i) => {
+    CrewImageContainer.insertAdjacentHTML(
+      "beforeend",
+      `<img
+    class="slides"
+    src=${img}
+    alt=""
+  />`
+    );
+  });
+  const slides = document.querySelectorAll(".slides");
+  slides.forEach((_, i) => {
+    dotContainer.insertAdjacentHTML(
+      "beforeend",
+      `<div class="dot" data-number="${i}"></div>`
+    );
+  });
+  console.log(slides);
+
+  goToSlide(slides, 0);
+  const dots = document.querySelectorAll(".dot");
+  // console.log(dots);
+  dots.forEach((dot, i) => {
+    // console.log();
+    dot.addEventListener("click", function () {
+      let number = dot.dataset.number;
+      goToSlide(slides, number);
+      const crewMember = data.crew[number];
+      console.log(crewMember);
+      const { role } = crewMember;
+      const { bio } = crewMember;
+      const { name } = crewMember;
+
+      crewBio.textContent = bio;
+      crewName.textContent = name;
+      crewRole.textContent = role;
+    });
+  });
+};
+
+crewFunc();
+// slides.forEach(function (_, i) {
+//   dotContainer.insertAdjacentHTML("beforeend", '<div class="dot"></div>');
+// });
