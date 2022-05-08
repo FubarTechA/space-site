@@ -4,9 +4,6 @@ const navBar = document.querySelector(".nav");
 const navLinks = document.querySelectorAll(".nav-links a");
 // const explore = document.querySelector(".explore");
 // const exploreBtn = explore.querySelector(".explore-btn");
-const planetImg = document.querySelector(".planet-img");
-
-const planetDiv = document.querySelector(".planet-div");
 // console.log(planets[0].dataset);
 
 // adding the hover effects on the links
@@ -69,22 +66,55 @@ let myRequest = new Request("./data.json");
 
 // let number = undefined;
 
-planetDiv.addEventListener("click", function (e) {
-  const planet = e.target.closest(".planet");
-  if (!planet) return;
-  let number = planet.dataset.number;
-  // console.log(number);
-  // console.log(planetImg);
-  const getData = async function () {
-    const res = await fetch(myRequest);
+const getData = async function () {
+  const res = await fetch(myRequest);
 
-    const data = await res.json();
-    const planetInfo = data.destinations[number];
-    let { png } = planetInfo.images;
-    planetImg.setAttribute("src", png);
-  };
-
-  getData();
-});
+  const data = await res.json();
+  return data;
+};
 
 // console.log(number);
+
+const destinationFunction = function () {
+  const planetDiv = document.querySelector(".planet-div");
+  const planetImg = document.querySelector(".planet-img");
+  const planetName = document.querySelector(".planet-name");
+  const planetDistance = document.querySelector(".planet-distance");
+  const planetTravelTime = document.querySelector(".planet-travel-time");
+  const planetInformation = document.querySelector(".info");
+
+  planetDiv.addEventListener("mouseover");
+
+  planetDiv.addEventListener("click", function (e) {
+    const planet = e.target.closest(".planet");
+    if (!planet) return;
+    const siblings = planet.closest(".planet-div").querySelectorAll(".planet");
+    if (!siblings) return;
+    planet.classList.add("active");
+    siblings.forEach((sib) => {
+      if (sib !== planet) {
+        sib.classList.remove("active");
+      }
+    });
+
+    const { number } = planet.dataset;
+
+    const planetFunc = async function () {
+      const data = await getData();
+      const planetInfo = data.destinations[number];
+      const { png } = planetInfo.images;
+      const { name } = planetInfo;
+      const { description } = planetInfo;
+      const { distance } = planetInfo;
+      const { travel } = planetInfo;
+      planetImg.setAttribute("src", png);
+      planetName.textContent = name;
+      planetInformation.textContent = description;
+      planetDistance.textContent = distance;
+      planetTravelTime.textContent = travel;
+    };
+    planetFunc();
+  });
+};
+
+destinationFunction();
