@@ -83,7 +83,17 @@ const destinationFunction = function () {
   const planetTravelTime = document.querySelector(".planet-travel-time");
   const planetInformation = document.querySelector(".info");
 
-  planetDiv.addEventListener("mouseover");
+  planetDiv.addEventListener("mouseover", function (e) {
+    const planet = e.target.closest(".planet");
+    if (!planet) return;
+    planet.classList.add("hover");
+  });
+
+  planetDiv.addEventListener("mouseout", function (e) {
+    const planet = e.target.closest(".planet");
+    if (!planet) return;
+    planet.classList.remove("hover");
+  });
 
   planetDiv.addEventListener("click", function (e) {
     const planet = e.target.closest(".planet");
