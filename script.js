@@ -4,6 +4,7 @@ const navBar = document.querySelector(".nav");
 const navLinks = document.querySelectorAll(".nav-links a");
 // const explore = document.querySelector(".explore");
 // const exploreBtn = explore.querySelector(".explore-btn");
+const planetImg = document.querySelector(".planet-img");
 
 const planetDiv = document.querySelector(".planet-div");
 // console.log(planets[0].dataset);
@@ -72,17 +73,16 @@ planetDiv.addEventListener("click", function (e) {
   const planet = e.target.closest(".planet");
   if (!planet) return;
   let number = planet.dataset.number;
-  console.log(number);
-
+  // console.log(number);
+  // console.log(planetImg);
   const getData = async function () {
     const res = await fetch(myRequest);
-    // console.log(res);
 
     const data = await res.json();
-    plan = data.destinations[number];
+    const planetInfo = data.destinations[number];
+    let { png } = planetInfo.images;
+    planetImg.setAttribute("src", png);
   };
-
-  console.log(plan);
 
   getData();
 });
