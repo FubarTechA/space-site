@@ -79,8 +79,10 @@ planetDiv.addEventListener("click", function (e) {
     // console.log(res);
 
     const data = await res.json();
-    console.log(data.destinations[number]);
+    plan = data.destinations[number];
   };
+
+  console.log(plan);
 
   getData();
 });
