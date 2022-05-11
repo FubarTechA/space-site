@@ -654,7 +654,7 @@ nav {
     display: block;
     position: absolute;
     z-index: 3;
-    right: 20px;
+    right: 40px;
     top: 40px;
   }
   .hamburger {
@@ -676,7 +676,17 @@ nav {
     padding-top: 100px;
     z-index: 2;
     transform: translateX(100%);
-    /* display: none; */
+    display: block;
+    transition: 0.5s ease;
+  }
+
+  .nav.show {
+    transform: translateX(0);
+  }
+
+  .nav-links {
+    display: inline-block;
+    padding: 20px 0;
   }
 
   .index-main .writeup h5 {
@@ -859,19 +869,7 @@ nav {
     height: 36px;
   }
 
-  .close {
-    display: block;
-    position: absolute;
-    z-index: 3;
-    right: 20px;
-    top: 40px;
-  }
-  .hamburger {
-    display: block;
-    margin-right: 40px;
-  }
-
-  .nav {
+  /* .nav {
     position: absolute;
     right: 0;
     top: 0;
@@ -884,9 +882,7 @@ nav {
     backdrop-filter: blur(14px);
     padding-top: 100px;
     z-index: 2;
-    transform: translateX(100%);
-    display: none;
-  }
+  } */
 
   .index-main .writeup h5 {
     font-size: 18px;

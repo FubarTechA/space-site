@@ -2,17 +2,21 @@
 
 const navBar = document.querySelector(".nav");
 const navLinks = document.querySelectorAll(".nav-links a");
-const dotContainer = document.querySelector(".crew-slide-dot");
-const CrewImageContainer = document.querySelector(".crew-image");
-const crewRole = document.querySelector(".crew-role");
-const crewBio = document.querySelector(".crew-bio");
-const crewName = document.querySelector(".crew-name");
+const closeBtn = document.querySelector(".close");
+const hamburgerBtn = document.querySelector(".hamburger");
 // const explore = document.querySelector(".explore");
 // const exploreBtn = explore.querySelector(".explore-btn");
 // console.log(planets[0].dataset);
 
 // adding the hover effects on the links
-// console.log(navLinks);
+
+hamburgerBtn.addEventListener("click", function () {
+  navBar.classList.add("show");
+});
+
+closeBtn.addEventListener("click", function () {
+  navBar.classList.remove("show");
+});
 
 navLinks.forEach((link) => {
   link.addEventListener("mouseover", function () {
@@ -59,26 +63,12 @@ const myInit = {
 
 let myRequest = new Request("./data.json");
 
-// const getData = async function () {
-//   const res = await fetch(myRequest);
-//   // console.log(res);
-
-//   const data = await res.json();
-//   console.log(data);
-// };
-
-// getData();
-
-// let number = undefined;
-
 const getData = async function () {
   const res = await fetch(myRequest);
 
   const data = await res.json();
   return data;
 };
-
-// console.log(number);
 
 const destinationFunction = function () {
   const planetDiv = document.querySelector(".planet-div");
@@ -134,36 +124,42 @@ const destinationFunction = function () {
 
 // destinationFunction();
 
-dotContainer.addEventListener("click", function (e) {
-  const dot = e.target.closest(".dot");
-  if (!dot) return;
-  dot.classList.add("active");
-  const siblings = dot.closest(".crew-slide-dot").querySelectorAll(".dot");
-  if (!siblings) return;
-  siblings.forEach((sib) => {
-    if (sib !== dot) sib.classList.remove("active");
-  });
-});
-
-dotContainer.addEventListener("mouseover", function (e) {
-  const dot = e.target.closest(".dot");
-  if (!dot) return;
-  dot.classList.add("hover");
-});
-
-dotContainer.addEventListener("mouseout", function (e) {
-  const dot = e.target.closest(".dot");
-  if (!dot) return;
-  dot.classList.remove("hover");
-});
-
-const goToSlide = function (slides, slide) {
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-  );
-};
-
 const crewFunc = async function () {
+  const dotContainer = document.querySelector(".crew-slide-dot");
+  const CrewImageContainer = document.querySelector(".crew-image");
+  const crewRole = document.querySelector(".crew-role");
+  const crewBio = document.querySelector(".crew-bio");
+  const crewName = document.querySelector(".crew-name");
+
+  dotContainer.addEventListener("click", function (e) {
+    const dot = e.target.closest(".dot");
+    if (!dot) return;
+    dot.classList.add("active");
+    const siblings = dot.closest(".crew-slide-dot").querySelectorAll(".dot");
+    if (!siblings) return;
+    siblings.forEach((sib) => {
+      if (sib !== dot) sib.classList.remove("active");
+    });
+  });
+
+  dotContainer.addEventListener("mouseover", function (e) {
+    const dot = e.target.closest(".dot");
+    if (!dot) return;
+    dot.classList.add("hover");
+  });
+
+  dotContainer.addEventListener("mouseout", function (e) {
+    const dot = e.target.closest(".dot");
+    if (!dot) return;
+    dot.classList.remove("hover");
+  });
+
+  const goToSlide = function (slides, slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+  };
+
   const data = await getData();
   let images = data.crew.map((crew) => crew.images.png);
   console.log(data.crew);
@@ -195,7 +191,6 @@ const crewFunc = async function () {
       let number = dot.dataset.number;
       goToSlide(slides, number);
       const crewMember = data.crew[number];
-      console.log(crewMember);
       const { role } = crewMember;
       const { bio } = crewMember;
       const { name } = crewMember;
@@ -207,7 +202,4 @@ const crewFunc = async function () {
   });
 };
 
-crewFunc();
-// slides.forEach(function (_, i) {
-//   dotContainer.insertAdjacentHTML("beforeend", '<div class="dot"></div>');
-// });
+// crewFunc();
