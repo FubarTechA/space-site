@@ -68,7 +68,7 @@ const indexFunc = function () {
   });
 };
 
-// indexFunc();
+if (document.querySelector(".explore")) indexFunc();
 
 // FUNCTION FOR THE DESTINATION PAGE
 const destinationFunction = function () {
@@ -128,7 +128,7 @@ const destinationFunction = function () {
   });
 };
 
-// destinationFunction();
+if (document.querySelector(".planet-div")) destinationFunction();
 
 // FUNCTION FOR CREW.HTML PAGE
 const crewFunc = async function () {
@@ -154,6 +154,7 @@ const crewFunc = async function () {
     });
   });
 
+  // CREATING THE HOVER EFFECTS ON THE DOTS
   dotContainer.addEventListener("mouseover", function (e) {
     const dot = e.target.closest(".dot");
     if (!dot) return;
@@ -166,6 +167,7 @@ const crewFunc = async function () {
     dot.classList.remove("hover");
   });
 
+  // FUNCTION FOR IMAGE SLIDE
   const goToSlide = function (slides, slide) {
     slides.forEach(
       (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
@@ -174,7 +176,9 @@ const crewFunc = async function () {
 
   const data = await getData();
   let images = data.crew.map((crew) => crew.images.png);
-  console.log(data.crew);
+  // console.log(data.crew);
+
+  // CREATING IMG TAG BASED ON NUMBER OF IMAGES IN THE DATA.JSON CREW OBJECT
   images.forEach((img, i) => {
     CrewImageContainer.insertAdjacentHTML(
       "beforeend",
@@ -186,6 +190,8 @@ const crewFunc = async function () {
     );
   });
   const slides = document.querySelectorAll(".slides");
+
+  // CREATING DOTS BASED ON THE NUMBER OF SLIDE IMAGES
   slides.forEach((_, i) => {
     dotContainer.insertAdjacentHTML(
       "beforeend",
@@ -194,17 +200,20 @@ const crewFunc = async function () {
   });
   const dot = document.querySelectorAll(".dot");
   // console.log(dot);
+
+  // ADDING THE ACTIVE CLASS TO THE FIRST DOT ON LOAD
   dot.forEach((dot) => {
     if (dot.dataset.number === "0") {
       dot.classList.add("active");
       console.log(dot);
     }
   });
-  console.log(slides);
+  // console.log(slides);
 
   goToSlide(slides, 0);
   const dots = document.querySelectorAll(".dot");
 
+  // CHANGING THE INFO BASED ON DOT CLICKED
   dots.forEach((dot) => {
     dot.addEventListener("click", function () {
       let number = dot.dataset.number;
@@ -221,14 +230,16 @@ const crewFunc = async function () {
   });
 };
 
-crewFunc();
+if (document.querySelector(".crew-slide-dot")) crewFunc();
 
+// FUNCTION FOR THE TECHNOLOGY.HTML PAGE
 const techFunc = function () {
   const options = document.querySelectorAll(".option");
   const techName = document.querySelector(".tech-name");
   const techNote = document.querySelector(".tech-note");
   const techImg = document.querySelector(".tech-img img");
 
+  // CHANGING THE INITIAL IMAGE VIEW BASED ON SCREEN SIZE
   if (screen.width < 912) {
     techImg.setAttribute(
       "src",
@@ -242,6 +253,7 @@ const techFunc = function () {
     );
   }
 
+  // CREATING HOVER EFFECTS ON THE OPTIONS
   options.forEach((opt) => {
     opt.addEventListener("mouseover", function () {
       opt.classList.add("hover");
@@ -254,16 +266,21 @@ const techFunc = function () {
     });
   });
 
+  // ADDING THE ACTIVE CLASS AND CHANGING INFO BASED ON CLICKED
   options.forEach((opt) => {
     opt.addEventListener("click", function () {
       const siblings = opt.closest(".tech-opt").querySelectorAll(".option");
+
+      // REMOVINGV ACTIVE CLASS FROM ALL SIBLINGS
       siblings.forEach((sib) => {
         if (sib !== opt) sib.classList.remove("active");
       });
 
+      // ADDING THE ACTIVE CLASS TO THE CLASS TO THE CLICKED OPTION
       opt.classList.add("active");
       const { num } = opt.dataset;
 
+      // CHANGING INFO BASED ON CLICKED
       const techAsync = async function () {
         const data = await getData();
         const tech = data.technology[num];
@@ -271,7 +288,7 @@ const techFunc = function () {
         let { description } = tech;
         let { name } = tech;
         let { images } = tech;
-        // console.log(techImg.getAttribute("src").split("/").pop().split("-"));
+
         console.log(images.portrait);
         console.log(screen.width);
         if (screen.width < 912) {
@@ -289,5 +306,4 @@ const techFunc = function () {
     });
   });
 };
-
-// techFunc();
+if (document.querySelectorAll(".option")) techFunc();
