@@ -356,6 +356,7 @@ nav {
 
 .tech-writeup h3 {
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
 .tech-opt {
@@ -397,7 +398,11 @@ nav {
 .tech-img {
   width: 32%;
   height: 60vh;
-  background-image: url(/assets/technology/image-launch-vehicle-portrait.jpg);
+  /* background-image: url(/assets/technology/image-launch-vehicle-portrait.jpg); */
+}
+
+.tech-img img {
+  width: 100%;
 }
 
 @media only screen and (max-width: 912px) {
@@ -630,9 +635,14 @@ nav {
 
   .tech-img {
     width: 100%;
-    height: 30vh;
-    background-image: url(/assets/technology/image-launch-vehicle-landscape.jpg);
+    height: 40vh;
+    /* background-image: url(/assets/technology/image-launch-vehicle-landscape.jpg); */
     background-size: cover;
+  }
+
+  .tech-img img {
+    width: 100%;
+    height: 100%;
   }
 }
 
