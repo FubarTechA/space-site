@@ -205,7 +205,6 @@ const crewFunc = async function () {
   dot.forEach((dot) => {
     if (dot.dataset.number === "0") {
       dot.classList.add("active");
-      console.log(dot);
     }
   });
   // console.log(slides);
@@ -240,18 +239,22 @@ const techFunc = function () {
   const techImg = document.querySelector(".tech-img img");
 
   // CHANGING THE INITIAL IMAGE VIEW BASED ON SCREEN SIZE
-  if (screen.width < 912) {
-    techImg.setAttribute(
-      "src",
-      "/assets/technology/image-launch-vehicle-landscape.jpg"
-    );
-  }
-  if (screen.width > 912) {
-    techImg.setAttribute(
-      "src",
-      "/assets/technology/image-launch-vehicle-portrait.jpg"
-    );
-  }
+  const changeImg = function () {
+    if (screen.width < 912) {
+      techImg.setAttribute(
+        "src",
+        "/assets/technology/image-launch-vehicle-landscape.jpg"
+      );
+    }
+    if (screen.width > 912) {
+      techImg.setAttribute(
+        "src",
+        "/assets/technology/image-launch-vehicle-portrait.jpg"
+      );
+    }
+  };
+
+  if (techImg) changeImg();
 
   // CREATING HOVER EFFECTS ON THE OPTIONS
   options.forEach((opt) => {
@@ -306,4 +309,4 @@ const techFunc = function () {
     });
   });
 };
-if (document.querySelectorAll(".option")) techFunc();
+if (document.querySelectorAll(".tech-name")) techFunc();
