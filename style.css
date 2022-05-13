@@ -14,9 +14,9 @@
 }
 
 p {
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 2px;
-  line-height: 18px;
+  line-height: 32px;
   color: #d0d6f9;
 }
 
@@ -134,7 +134,7 @@ nav {
 }
 
 .index-main .writeup h5 {
-  padding-top: 150px;
+  padding-top: 200px;
 }
 
 .index-main .writeup h1 {
