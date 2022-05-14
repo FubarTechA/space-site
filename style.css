@@ -137,10 +137,6 @@ nav {
   padding-top: 150px;
 }
 
-.index-main .writeup h1 {
-  /* padding: 30px 0px 50px; */
-}
-
 .index-main .writeup p {
   width: 65%;
 }
@@ -247,10 +243,6 @@ nav {
   border-bottom: 2px solid rgba(208, 214, 249, 0.5);
 }
 
-.destination-writeup h2 {
-  /* margin: 20px 0px; */
-}
-
 .info {
   width: 85%;
   padding-bottom: 30px;
@@ -291,7 +283,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 6px auto;
+  margin: 0 auto;
   height: 80vh;
 }
 
@@ -307,7 +299,7 @@ nav {
 }
 
 .crew-div p {
-  width: 60%;
+  width: 75%;
 }
 
 .crew-image {
@@ -327,7 +319,7 @@ nav {
 
 .crew-slide-dot {
   width: 15%;
-  height: 50px;
+  height: 30px;
   margin-top: 22px;
   display: flex;
   justify-content: space-between;
@@ -510,10 +502,6 @@ nav {
   .destination-img {
     margin-bottom: 40px;
     width: 50%;
-  }
-
-  .destination-img img {
-    /* width: 40%; */
   }
 
   .destination-writeup {
