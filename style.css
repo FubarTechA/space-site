@@ -348,7 +348,7 @@ nav {
 }
 
 .technology-main {
-  padding: 70px 0 0px 15%;
+  padding: 0px 0 0px 15%;
 }
 
 .technology-main h5 {
@@ -362,7 +362,7 @@ nav {
 }
 
 .tech-writeup {
-  width: 50%;
+  width: 60%;
   display: flex;
 }
 
@@ -376,8 +376,8 @@ nav {
 }
 
 .option {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   /* background-color: #fff; */
   color: #fff;
@@ -400,7 +400,7 @@ nav {
 }
 
 .tech-note {
-  width: 80%;
+  width: 85%;
 }
 
 .tech-term {
