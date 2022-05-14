@@ -189,7 +189,7 @@ nav {
 }
 
 .destination-main {
-  padding: 70px 15% 0px;
+  padding: 30px 10% 0px;
 }
 .number {
   color: #d0d6f9;
@@ -206,11 +206,20 @@ nav {
 .destination-div {
   display: flex;
   justify-content: space-between;
-  margin: 70px auto;
+  align-items: center;
+  margin: 50px auto 0;
 }
 
 .destination-writeup {
   width: 50%;
+}
+
+.destination-img {
+  width: 30%;
+}
+
+.destination-img img {
+  width: 100%;
 }
 
 .planet-div {
@@ -239,12 +248,12 @@ nav {
 }
 
 .destination-writeup h2 {
-  margin: 20px 0px;
+  /* margin: 20px 0px; */
 }
 
 .info {
-  width: 75%;
-  padding-bottom: 50px;
+  width: 85%;
+  padding-bottom: 30px;
   padding-right: 20px;
   border-bottom: 0.5px solid #d0d6f9;
 }
@@ -498,8 +507,13 @@ nav {
     text-align: center;
   }
 
+  .destination-img {
+    margin-bottom: 40px;
+    width: 50%;
+  }
+
   .destination-img img {
-    width: 40%;
+    /* width: 40%; */
   }
 
   .destination-writeup {
@@ -763,7 +777,7 @@ nav {
   }
 
   .destination-img img {
-    width: 50%;
+    width: 100%;
   }
 
   .destination-div {
